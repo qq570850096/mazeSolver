@@ -8,6 +8,8 @@ public class MazeData{
 
     private int N,M;
     private char[][] maze;
+    public static final char WALL='#';
+    public static final char RODA=' ';
     
     public MazeData(String filename){
         if(filename==null)
