@@ -16,6 +16,7 @@ public class MazeData{
     public boolean[][] visited;
     //标记路径
     public boolean[][] path;
+    //标记最终寻路路径
     public boolean[][] result;
     
     public MazeData(String filename){

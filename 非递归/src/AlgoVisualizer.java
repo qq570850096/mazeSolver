@@ -2,13 +2,13 @@ import java.awt.*;
 import java.util.Stack;
 
 public class AlgoVisualizer {
-
-    private static int DELAY = 8;
+    //刷新频率和砖块大小
+    private static int DELAY = 20;
     private static int blockSide = 8;
-
+    //初始化数据和视图,这个类是控制层，底层修改全在数据层中进行
     private MazeData data;
     private AlgoFrame frame;
-
+    //寻路的四个方向
     private static final int d[][]={{-1,0},{0,1},{1,0},{0,-1}};
 
     public AlgoVisualizer(String mazeFile){
@@ -49,6 +49,7 @@ public class AlgoVisualizer {
                 break;
                 
             }
+            
             for(int i=0;i<4;i++){
                 int newX=curPos.getX()+d[i][0];
                 int newY=curPos.getY()+d[i][1];
