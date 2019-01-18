@@ -37,28 +37,46 @@ public class AlgoVisualizer {
         Position entrance = new Position(data.getEntranceX(),data.getEntranceY());
         stack.push(entrance);
         data.visited[entrance.getX()][entrance.getY()]=true;
-
+        //如果栈空了，说明找不到出口，为了看起来更直观加入布尔变量isSolved
+        boolean isSolved=false;
         while(!stack.empty()){
             Position curPos=stack.pop();
             setData(curPos.getX(), curPos.getY(), true);
 
-            if(curPos.getX()==data.getExitX()&&curPos.getY()==data.getExitY())
+            if(curPos.getX()==data.getExitX()&&curPos.getY()==data.getExitY()){
+                isSolved=true;
+                findPath(curPos);
                 break;
-
+                
+            }
             for(int i=0;i<4;i++){
                 int newX=curPos.getX()+d[i][0];
                 int newY=curPos.getY()+d[i][1];
 
                 if(data.inArea(newX, newY)
-                && !data.visited[newX][newY]
-                && data.getMaze(newX, newY)==MazeData.RODA){
-                    stack.push(new Position(newX, newY));
+                        && !data.visited[newX][newY]
+                        && data.getMaze(newX, newY)==MazeData.RODA){
+                    stack.push(new Position(newX, newY,curPos));
                     data.visited[newX][newY]=true;
                 }
             }
         }
 
+        if(!isSolved){
+            System.out.println("The maze has no solution!");
+        }
+
         setData(-1,-1,false);
+    }
+
+    private void findPath(Position des){
+
+        Position cur=des;
+        while(cur!=null){
+            data.result[cur.getX()][cur.getY()]=true;
+            cur=cur.getPrev();
+        }
+
     }
 
     

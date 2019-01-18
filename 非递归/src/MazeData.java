@@ -16,6 +16,7 @@ public class MazeData{
     public boolean[][] visited;
     //标记路径
     public boolean[][] path;
+    public boolean[][] result;
     
     public MazeData(String filename){
         if(filename==null)
@@ -38,6 +39,7 @@ public class MazeData{
             //布尔数组默认初始值为false
             visited=new boolean[N][M];
             path=new boolean[N][M];
+            result=new boolean[N][M];
 
             for(int i=0;i<N;i++){
                 String line =scanner.nextLine();
